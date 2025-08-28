@@ -66,3 +66,32 @@ class Enrollment:
             date = enrollment.get_enrollment_date().date()
             enrollment_count[date] = enrollment_count.get(date, 0) + 1
         return enrollment_count
+
+
+# Create students
+s1 = Student("Alice")
+s2 = Student("Bob")
+
+# Create courses
+c1 = Course("Math")
+c2 = Course("Science")
+
+# Enroll students
+s1.enroll(c1, grade=90)
+s1.enroll(c2, grade=85)
+s2.enroll(c1, grade=75)
+
+# Print enrollments
+print("Alice's courses:", [enrollment.course.title for enrollment in s1.get_enrollments()])
+print("Bob's courses:", [enrollment.course.title for enrollment in s2.get_enrollments()])
+
+# Print number of courses per student
+print("Alice is taking", s1.course_count(), "courses")
+print("Bob is taking", s2.course_count(), "courses")
+
+# Print average grades
+print("Alice's average grade:", s1.aggregate_average_grade())
+print("Bob's average grade:", s2.aggregate_average_grade())
+
+# Print all enrollments per day
+print("Enrollments per day:", Enrollment.aggregate_enrollments_per_day())
